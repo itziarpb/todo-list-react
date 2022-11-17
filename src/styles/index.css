@@ -1,12 +1,25 @@
-
-/* 
-
-    You can write your own styles here...
+body {background-color: black;}
+.container {
+    background-color: rgb(243, 242, 242);
+    margin-left: 25%;
+    width:50%;
+    height:617px;
+}
+h1{
+color: rgb(245, 134, 255);
+text-align: center;
+font-size: 40px;
+}
+.list{
+    background-color: white;
+    margin: 10px;
+    list-style:none;
+    border: 1px solid rgba(0, 0, 0, 0.137);
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+}
+.list li{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+}
+span{
+    width:80px;
+}

@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
+	const [inputValue, setInputValue] = useState ()
+	const [task, setTask] = useState ([])
+	const [counter,setCounter] = useState (0)
+
+	const handleChande =(e) => {
+		setInputValue(e.target.value)
+	}
+	const handleKeyDown =(e)=>{
+		if (e.keyCode==13) {
+			setTask([...task, inputValue])
+			setInputValue("")
+			setCounter(counter+1)}
+	}
+	const handleRemoveTask =(e)=>{
+			const newtask = task.filter((task)=> task !== e);
+			setTask(newtask)
+			setCounter(counter-1)
+
+	}
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container">
+			<div>
+				<h1>todos</h1>
+			</div>
+			<ul className="list">
+				<li>
+					<input type='text'
+					placeholder="What needs to be done?" 
+					onChange={handleChande} 
+					onKeyDown={handleKeyDown}
+					value={inputValue}
+					></input>
+				</li>
+				{task.map((t) =>(
+				<li>
+					<span>{t}</span>
+					<i className="fa fa-xmark" onClick={()=>handleRemoveTask(t)} ></i></li>))}
+				<li>{counter} items left</li>
+			</ul>
 		</div>
 	);
 };
