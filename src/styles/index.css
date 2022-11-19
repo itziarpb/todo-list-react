@@ -5,21 +5,36 @@ body {background-color: black;}
     width:50%;
     height:617px;
 }
-h1{
-color: rgb(245, 134, 255);
-text-align: center;
-font-size: 40px;
+.todos{
+    padding-top:2%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100px;
+    color: rgb(232, 182, 236);
+    text-align: center;
 }
+
 .list{
     background-color: white;
-    margin: 10px;
+    margin-left: 8%;
+    margin-right: 9%;
     list-style:none;
     border: 1px solid rgba(0, 0, 0, 0.137);
+    padding:0;
     
+}
+input{
+    border: 0;
 }
 .list li{
     border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+    height:55px;
+    padding:12px;
+    padding-left: 40px;
 }
-span{
-    width:80px;
+.list li span{
+    margin-right: 80%;
 }
+.clear{
+    font-size: 20px;
+}
+
