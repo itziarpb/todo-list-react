@@ -4,7 +4,6 @@ const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [task, setTask] = useState([]);
   const [counter, setCounter] = useState(0);
-  const [isHover, setIsHover] = useState(false);
 
   const handleChande = (e) => {
     setInputValue(e.target.value);
@@ -34,25 +33,22 @@ const Home = () => {
             placeholder="What needs to be done?"
             onChange={handleChande}
             onKeyDown={handleKeyDown}
-			value={inputValue}
+			      value={inputValue}
           ></input>
         </li>
         {task.map((t) => (
-          <li
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
-          >
-        	<span>{t}</span>
-            {isHover && (
-                <i
-                  className={`clear fa fa-xmark`}
-                  onClick={() => handleRemoveTask(t)}
-                ></i>
-            )}
+          <li>
+            <div className="task">{t}</div>
+            <div
+              className={`xMark fa fa-xmark`}
+              onClick={() => handleRemoveTask(t)}
+            ></div>
           </li>
         ))}
       </ul>
-      <div>{counter} items left</div>
+      <div className="counter">{counter} items left</div>
+      <div className="final1">empty</div>
+      <div className="final2">empty</div>
     </div>
   );
 };
