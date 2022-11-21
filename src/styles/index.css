@@ -41,6 +41,9 @@ input{
     width:7%;
 
 }
+.xMarkVisible{
+    color:red;
+}
 .counter{
     background-color: white;
     margin-left: 8%;
@@ -60,8 +63,6 @@ input{
     height:5px;
     border: 1px solid rgba(0, 0, 0, 0.137);
     border-top: 0;
-    color:white;
-    font-size:1px;
 }
 .final2{
     background-color: white;
@@ -70,9 +71,6 @@ input{
     height:5px;
     border: 1px solid rgba(0, 0, 0, 0.137);
     border-top: 0;
-    color:white;
-    font-size:1px;
 }
 
-/*hacer que aparezca y que desaparezca
-otro metodo para que los finales se vean sin necesidad de letras*/
+/*hacer que aparezca y que desaparezca*/

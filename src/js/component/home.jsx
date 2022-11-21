@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [task, setTask] = useState([]);
+  // const [hidden, setHidden] = useState("");
   const [counter, setCounter] = useState(0);
 
   const handleChande = (e) => {
@@ -20,6 +21,9 @@ const Home = () => {
     setTask(newtask);
     setCounter(counter - 1);
   };
+  // const handleVisible= () => {
+  //   setHidden("xMarkVisible");
+  // }
 
   return (
     <div className="container">
@@ -38,7 +42,10 @@ const Home = () => {
         </li>
         {task.map((t) => (
           <li>
-            <div className="task">{t}</div>
+            <div 
+              className="task"
+              //onMouseEnter={handleVisible()}
+              >{t}</div>
             <div
               className={`xMark fa fa-xmark`}
               onClick={() => handleRemoveTask(t)}
@@ -47,8 +54,8 @@ const Home = () => {
         ))}
       </ul>
       <div className="counter">{counter} items left</div>
-      <div className="final1">empty</div>
-      <div className="final2">empty</div>
+      <div className="final1"></div>
+      <div className="final2"></div>
     </div>
   );
 };
