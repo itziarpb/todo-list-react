@@ -1,29 +1,33 @@
+import propTypes from "prop-types";
 import React, { useState } from "react";
 
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
-  const [task, setTask] = useState([]);
-  // const [hidden, setHidden] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [hidden, setHidden] = useState("");
   const [counter, setCounter] = useState(0);
 
   const handleChande = (e) => {
     setInputValue(e.target.value);
   };
-  const handleKeyDown = (e) => {
-    if (e.keyCode == 13) {
-      setTask([...task, inputValue]);
+  const handleKeyDown = (event) => {
+    if (event.keyCode == 13) {
+      setTasks([...tasks, inputValue]);
       setInputValue("");
       setCounter(counter + 1);
     }
   };
-  const handleRemoveTask = (e) => {
-    const newtask = task.filter((task) => task !== e);
-    setTask(newtask);
+  const handleRemoveTask = () => {
+    const newtask = tasks.filter((tasks) => tasks !== e);
+    setTasks(newtask);
     setCounter(counter - 1);
   };
-  // const handleVisible= () => {
-  //   setHidden("xMarkVisible");
-  // }
+  const handleVisible= () => {
+    setHidden("xMarkVisible");
+  }
+  const handleNoVisible= () => {
+    setHidden("");
+  }
 
   return (
     <div className="container">
@@ -40,15 +44,16 @@ const Home = () => {
 			      value={inputValue}
           ></input>
         </li>
-        {task.map((t) => (
-          <li>
+        {tasks.map((task, index) => (
+          <li key={index}>
             <div 
-              className="task"
-              //onMouseEnter={handleVisible()}
-              >{t}</div>
+              className="task"              
+              onMouseEnter={() => handleVisible()}
+              onMouseLeave={() => handleNoVisible()}
+              >{task}</div>
             <div
-              className={`xMark fa fa-xmark`}
-              onClick={() => handleRemoveTask(t)}
+              className={`xMark ${hidden} fa fa-xmark`}
+              onClick={() => handleRemoveTask(task)}
             ></div>
           </li>
         ))}
