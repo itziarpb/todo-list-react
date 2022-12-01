@@ -1,33 +1,34 @@
-import propTypes from "prop-types";
 import React, { useState } from "react";
+import Task from "./task";
 
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [hidden, setHidden] = useState("");
   const [counter, setCounter] = useState(0);
 
   const handleChande = (e) => {
     setInputValue(e.target.value);
   };
   const handleKeyDown = (event) => {
-    if (event.keyCode == 13) {
-      setTasks([...tasks, inputValue]);
+    if (event.keyCode == 13 && inputValue != "") {
+      const newValue = {
+        label: inputValue,
+        done: false,
+      };
+      setTasks([...tasks, newValue]);
       setInputValue("");
       setCounter(counter + 1);
     }
   };
-  const handleRemoveTask = () => {
-    const newtask = tasks.filter((tasks) => tasks !== e);
+  const handleRemoveTask = (event) => {
+    const newtask = tasks.filter((task) => task !== event);
     setTasks(newtask);
     setCounter(counter - 1);
   };
-  const handleVisible= () => {
-    setHidden("xMarkVisible");
-  }
-  const handleNoVisible= () => {
-    setHidden("");
-  }
+  const handleDelete = () => {
+    setTasks([]);
+    setCounter(0);
+  };
 
   return (
     <div className="container">
@@ -41,26 +42,23 @@ const Home = () => {
             placeholder="What needs to be done?"
             onChange={handleChande}
             onKeyDown={handleKeyDown}
-			      value={inputValue}
+            value={inputValue}
           ></input>
         </li>
         {tasks.map((task, index) => (
-          <li key={index}>
-            <div 
-              className="task"              
-              onMouseEnter={() => handleVisible()}
-              onMouseLeave={() => handleNoVisible()}
-              >{task}</div>
-            <div
-              className={`xMark ${hidden} fa fa-xmark`}
-              onClick={() => handleRemoveTask(task)}
-            ></div>
-          </li>
+          <Task task={task} handleRemoveTask={handleRemoveTask} key={index} />
         ))}
       </ul>
       <div className="counter">{counter} items left</div>
       <div className="final1"></div>
       <div className="final2"></div>
+      <button
+        type="button"
+        className="btn btn-light"
+        onClick={() => handleDelete()}
+      >
+        Restart List
+      </button>
     </div>
   );
 };
